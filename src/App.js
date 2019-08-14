@@ -4,11 +4,51 @@ import Person from './Person/Person' ;
 
 
 class App extends Component {
+
+state = {
+  persons : [
+    { name: "Allen" , age:"25"},
+    {name:"Eren", age:"20"},
+    {name: "Levi" , age:"22"}
+  ]
+}
+
+  switchNameHundler = (NewValue) => { 
+    // console.log("was clicked") 
+   this.setState ({
+    persons : [
+      { name: NewValue, age:"25"},
+      {name:"Eren", age:"20"},
+      {name: "Levi" , age:"22"}
+    ]
+
+   }) ; }
+
+
+   switchChangedHundler = (event) => {
+    this.setState ({
+      persons : [
+        {name: event.target.value , age:"25"},
+        {name: "Eren" , age:"20"},
+        {name: "Levi" , age:"22"}
+      ]
+  
+     }) ;
+   }
+   
+  
+
   render() {
     return (
       <div className="App">
         <h1> Hey im react</h1> 
-        <Person />     
+        <button onClick={this.switchNameHundler.bind(this,"Yefet")}>Switch name</button>
+        <Person 
+        name= {this.state.persons[0].name} age= {this.state.persons[0].age}
+        changed= {this.switchChangedHundler}  > And i like Skateboard</Person>   
+        <Person
+         click={() => this.switchNameHundler("i dunno")} name= {this.state.persons[1].name} age= {this.state.persons[1].age} > And i like going to the sea</Person> 
+        <Person name= {this.state.persons[2].name} age= {this.state.persons[2].age}> And i like Killing titans</Person>      
       </div>
     );
   }

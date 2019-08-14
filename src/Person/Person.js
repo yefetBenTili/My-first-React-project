@@ -1,8 +1,13 @@
 import React from 'react' ;
 
 
-const person = () => {
-return <p> I'm Yefet </p>
+const person = (props) => {
+return (
+<div> <p onClick = {props.click}> My Name ist {props.name} and my age is {props.age} </p>
+     <p>{props.children}</p>  
+     <input type='text' onChange = {props.changed} value = {props.name}/>
+</div>
+)
 
 };
 
