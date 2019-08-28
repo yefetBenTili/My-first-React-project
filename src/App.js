@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person' ;
 
 
+
 class App extends Component {
 
 state = {
@@ -40,33 +41,41 @@ switchChangedHundler = (event , id) => {
 
   render() {
 
-    const style ={ background : 'white' , font:'inherit' , border: "1px solid blue" , padding: "8px" , cursor:"pointer"}
+    const style ={background: 'green',
+    color:'white',
+    font:'inherit',
+    border: '1px solid blue',
+    padding: '8px',
+    cursor:'pointer',
+    } ;
     
      let persons = null;
      if(this.state.showPerson) {
          persons = this.state.persons.map( (person , index) => {
-           return <Person name ={person.name} age = {person.age}  key={person.id} click = {() => this.deletePersonHundle(index)} changed={(event) => this.switchChangedHundler(event ,person.id)} >
+           return <Person name ={person.name} age = {person.age}  key={person.id}
+            click = {() => this.deletePersonHundle(index)}
+             changed={(event) => this.switchChangedHundler(event ,person.id)}>
            </Person>
          }
-         ) }
-
-      //  persons =( 
-      //  <div> 
-      //  <Person 
-      //  name= {this.state.persons[0].name} age= {this.state.persons[0].age}
-      //  changed= {this.switchChangedHundler}  > And i like Skateboard</Person>   
-      //  <Person
-      //   click={() => this.switchNameHundler("i dunno")} name= {this.state.persons[1].name} age= {this.state.persons[1].age} > And i like going to the sea</Person> 
-      //  <Person name= {this.state.persons[2].name} age= {this.state.persons[2].age}> And i like Killing titans</Person>      
-      // </div>);
-
-     
+          ) ;
+         style.background = "red" ;
+         }
+          
+         const classes = [] ;
+         if(this.state.persons.length <= 2){
+           classes.push('red') ; // classes =['red']
+         }
+         if(this.state.persons.length <= 1){
+           classes.push('bold') ; //classes =['red' , 'bold']
+         }
 
     return (
       <div className="App">
         <h1> Hey im react</h1> 
-        <button onClick={this.togglePersonsHundle} style = {style}>Show persons</button>
-       { persons }
+    <p className={classes.join(' ') /* joining the 2 classes above */}>This is rly working</p>
+        <button style ={style} className="toggleButton" onClick={this.togglePersonsHundle}
+         >Show persons</button>
+       {persons}
       </div>
     );
   }
@@ -75,5 +84,5 @@ switchChangedHundler = (event , id) => {
 
 
 
-export default App;
+export default (App);
 
